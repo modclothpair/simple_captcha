@@ -10,6 +10,7 @@ begin
     gem.email = "joloudov@gmail.com"
     gem.homepage = "http://github.com/joloudov/simple_captcha"
     gem.authors = ["joloudov"]
+    gem.add_development_dependency "rails", ">= 2.3.7"
     gem.files = [
       '[A-Z]*',
       '*.rb',

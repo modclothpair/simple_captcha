@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{simple_captcha}
-  s.version = "0.1.1"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["joloudov"]
@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
      "assets/migrate/create_simple_captcha_data_less_than_2.0.rb",
      "assets/views/simple_captcha/_simple_captcha.erb",
      "init.rb",
-     "install.rb",
      "lib/simple_captcha.rb",
      "lib/simple_captcha_action_controller.rb",
      "lib/simple_captcha_action_view.rb",
@@ -50,9 +49,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_development_dependency(%q<rails>, [">= 2.3.7"])
     else
+      s.add_dependency(%q<rails>, [">= 2.3.7"])
     end
   else
+    s.add_dependency(%q<rails>, [">= 2.3.7"])
   end
 end
 
