@@ -12,7 +12,7 @@ module SimpleCaptcha #:nodoc
     end
     
     def simple_captcha_key #:nodoc
-      session[:simple_captcha] ||= Digest::SHA1.hexdigest(Time.now.to_s + session.session_id.to_s)
+      session[:simple_captcha] ||= Digest::SHA1.hexdigest(Time.now.to_s +  request.session_options[:id].to_s)
     end
         
     def simple_captcha_value(key = simple_captcha_key) #:nodoc
