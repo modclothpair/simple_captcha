@@ -1,7 +1,7 @@
 # Copyright (c) 2008 [Sur http://expressica.com]
 
 class SimpleCaptchaData < ActiveRecord::Base
-  set_table_name "simple_captcha_data"
+  self.table_name = "simple_captcha_data"
   cattr_accessor :clear_counter, :counter_batch
 
   class << self
