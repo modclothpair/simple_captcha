@@ -2,10 +2,11 @@
 
 class SimpleCaptchaData < ActiveRecord::Base
   set_table_name "simple_captcha_data"
-  
+  cattr_accessor :clear_counter, :counter_batch
+
   class << self
     def get_data(key)
-      data = find_by_key(key) || new(:key => key)
+      find_by_key(key) || new(:key => key)
     end
     
     def remove_data(key)
@@ -16,7 +17,14 @@ class SimpleCaptchaData < ActiveRecord::Base
     
     def clear_old_data(time = 1.hour.ago)
       return unless Time === time
-      destroy_all("updated_at < '#{time.to_s(:db)}'")
+      self.clear_counter ||= -1
+      self.counter_batch ||= 100
+      self.clear_counter  += 1
+
+      # trying not to clear/delete every single time
+      if self.clear_counter == 0 || (self.clear_counter % self.counter_batch == 0)
+        delete_all("updated_at < '#{time.to_s(:db)}'")
+      end
     end
   end
   
